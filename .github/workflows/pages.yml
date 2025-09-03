@@ -1,5 +1,4 @@
-name: Build & Publish GitHub Pages
-
+name: Build LaTeX -> HTML & PDF, Publish Pages
 on:
   push:
     branches: [ "main" ]
@@ -21,25 +20,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install TeX Live (XeLaTeX)
+      - name: Install TeX & Pandoc
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-xetex texlive-latex-recommended texlive-fonts-recommended latexmk
+          sudo apt-get install -y texlive-xetex texlive-latex-recommended texlive-fonts-recommended latexmk pandoc
 
-      - name: Build resume.pdf
+      # 生成 PDF：out/resume.pdf
+      - name: Build PDF with XeLaTeX
         run: |
           mkdir -p out
-          latexmk -xelatex -output-directory=out main_cv.tex
+          latexmk -xelatex -interaction=nonstopmode -output-directory=out main_cv.tex
+          # 统一命名为 resume.pdf
+          [ -f out/main_cv.pdf ] && mv out/main_cv.pdf out/resume.pdf || true
+
+      # 从 LaTeX 转 HTML（out/index.html），并注入页头
+      - name: Build HTML with Pandoc
+        run: |
+          pandoc main_cv.tex -s -o out/index.html \
+            --metadata title="Zayn Zheng Zhi — Resume" \
+            --include-before-body=header.html
+
+      - name: Finalize site folder
+        run: |
           touch out/.nojekyll
-
-      - name: Copy site files
-        run: |
-          cp index.html out/index.html
-          if [ -d assets ]; then cp -R assets out/; fi
-
-      - name: Rename pdf to resume.pdf (optional)
-        run: |
-          if [ -f out/main_cv.pdf ]; then mv out/main_cv.pdf out/resume.pdf; fi
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -51,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - id: deployment
+      - id: deploy
         uses: actions/deploy-pages@v4
