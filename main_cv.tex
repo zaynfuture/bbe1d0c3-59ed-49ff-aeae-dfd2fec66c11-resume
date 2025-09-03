@@ -1,247 +1,127 @@
-\documentclass[12pt,letterpaper]{report}
+\documentclass[a4paper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{fontawesome}
 
-\usepackage[T1]{fontenc} % output T1 font encoding (8-bit) for accented characters as single glyph
-\usepackage[strict,autostyle]{csquotes} % smart and nestable quote marks
-\usepackage[USenglish]{babel} % regionalize hyphens, quote marks, etc automatically
-\usepackage{microtype}% improve text appearance with kerning, etc
-\usepackage{datetime} % enable formatting of date output
-\usepackage{tabto}    % make nice tabbing
-\usepackage{hyperref} % enable hyperlinks and pdf metadata
-\usepackage{geometry} % manually set page margins
-\usepackage{enumitem} % enumerate with [resume] option
-\usepackage{titlesec} % allow custom section fonts
-\usepackage{setspace} % custom line spacing
-\usepackage[maxcitenames=6, minnames=3 ]{biblatex}
-\addbibresource[]{biblio.bib}
-
-% bold the name of specific author
-\usepackage{xstring}
-\usepackage{etoolbox}
-\newboolean{bold}
-\newcommand{\makeauthorsbold}[1]{%
-  \DeclareNameFormat{author}{%
-  \setboolean{bold}{false}%
-    \renewcommand{\do}[1]{\expandafter\ifstrequal\expandafter{\namepartfamily}{####1}{\setboolean{bold}{true}}{}}%
-    \docsvlist{#1}%
-    \ifthenelse{\value{listcount}=1}
-    {%
-      {\expandafter\ifthenelse{\boolean{bold}}{\mkbibbold{\namepartfamily\addcomma\addspace \namepartgiveni}}{\namepartfamily\addcomma\addspace \namepartgiveni}}%
-    }{\ifnumless{\value{listcount}}{\value{liststop}}
-      {\expandafter\ifthenelse{\boolean{bold}}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni}}%
-      {\expandafter\ifthenelse{\boolean{bold}}{\mkbibbold{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}{\addcomma\addspace \namepartfamily\addcomma\addspace \namepartgiveni\addcomma\isdot}}%
-      }
-    \ifthenelse{\value{listcount}<\value{liststop}}
-    {\addcomma\space}{}
-  }
-}
-\makeauthorsbold{Luo, Zhirui}
-
-% what is your name?
-\newcommand{\myname}{Zhirui Luo}
-
-% select default typefaces
-\usepackage{ebgaramond} % document's serif typeface
-\usepackage{tgheros}    % document's sans serif typeface
-
-% how far to tab for list items with left-aligned date: different fonts need different widths
-\newcommand{\listtabwidth}{1.7cm}
-
-% define font to use as document's title
-\newcommand{\namefont}[1]{{\normalfont\bfseries\Huge{#1}}}
-
-% set section heading fonts and before/after spacing
-\SetTracking{encoding=*, family=\sfdefault}{30} % increase sans serif headings tracking
-\titleformat{\section}{\lsstyle\sffamily\small\bfseries\uppercase}{}{}{}{}
-\titlespacing{\section}{0pt}{30pt plus 4pt minus 4pt}{8pt plus 2pt minus 2pt}
-
-% set subsection heading fonts and before/after spacing
-\titleformat{\subsection}{\lsstyle\sffamily\footnotesize\bfseries}{}{}{}{}
-\titlespacing{\subsection}{0pt}{16pt plus 4pt minus 4pt}{4pt plus 2pt minus 2pt}
-
-% set page margins (assumes letter paper)
-\geometry{body={6.5in, 9.0in},
-    left=1.0in,
-    top=1.0in}
-
-% prevent paragraph indentation
-\setlength\parindent{0em}
-
-% set line spacing
-\setstretch{0.9}
-
-% define space between list items
-\newcommand{\listitemspace}{0.25em}
-
-% make unordered lists without bullets and use compact spacing
-\renewenvironment{itemize}
-{\begin{list}{}{\setlength{\leftmargin}{0em}
-                \setlength{\parskip}{0em}
-                \setlength{\itemsep}{\listitemspace}
-                \setlength{\parsep}{\listitemspace}}}
-{\end{list}}
-
-% make tabbed lists so content is left-aligned next to years
-\TabPositions{\listtabwidth}
-\newlist{tablist}{description}{3}
-\setlist[tablist]{leftmargin=\listtabwidth,
-    labelindent=0em,
-    topsep=0em,
-    partopsep=0em,
-    itemsep=\listitemspace,
-    parsep=\listitemspace,
-    font=\normalfont}
-
-% print only the month and year when using \today
-\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-
-% define hyperlink appearance and metadata for pdf properties
 \hypersetup{
-    colorlinks  = true,
-    urlcolor    = black,
-    citecolor   = black,
-    linkcolor   = black,
-    pdfauthor   = {\myname},
-    pdfkeywords = {Deep Learning, Machine Learning, Smart Meter ,Social Computation},
-    pdftitle    = {\myname: Curriculum Vitae},
-    pdfsubject  = {Curriculum Vitae},
-    pdfpagemode = UseNone
+  colorlinks=true,
+  urlcolor=blue
 }
 
+% ---------- Page style ----------
+\pagestyle{empty}
+\setlength{\tabcolsep}{0in}
+\setlength{\parskip}{4pt}
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+% ---------- Section format ----------
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+
+% ---------- Custom commands ----------
+\newcommand{\resumeItem}[1]{\item #1}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{1pt}\textbf{#1} \hfill #2 \\
+  \textit{#3} \hfill \textit{#4}\vspace{2pt}
+}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeItemListEnd}{\end{itemize}}
+
+% ==================================================
 \begin{document}
-    % \nobibliography*
-    \raggedright{}
 
-    % display your name as the document title
-    \namefont{\myname}
+\begin{center}
+    {\LARGE \textbf{Zayn Zheng Zhi}} \\[4pt]
+    3 Fraser St, Level 17, Duo Tower, Singapore \\
+    (+65) 8845-3896 \quad \faEnvelope\ \href{mailto:zaynfuture0932@gmail.com}{zaynfuture0932@gmail.com} \\
+    \faLinkedin\ \href{https://www.linkedin.com/in/zayn-zheng/}{linkedin.com/in/zayn-zheng}
+\end{center}
 
-    % affiliation and contact info blocks
-    \vspace{1em}
-    \begin{minipage}[t]{0.700\textwidth}
-        % current primary affiliation, left-aligned
-        National Cancer Institute\\
-        National Institutes of Health
-    \end{minipage}
-    \begin{minipage}[t]{0.295\textwidth}
-        % contact info details, right-aligned
-        \flushright{}
-        \href{mailto:zhirluo@gmail.com}{zhirluo@gmail.com} \\
-        +1 575 418 0064 \\
-        \href{https://zhiruiluo.github.io}{zhiruiluo.github.io}\\
-        \href{https://orcid.org/0000-0002-3121-2597}{orcid:0000-0002-3121-2597}
-    \end{minipage}
+% ---------- Summary ----------
+\section*{Professional Summary}
+10 years of work experience in data, AI, and software engineering, with 5 years in managerial roles. Proven ability to lead teams of up to 15 across multiple countries. Skilled at understanding complex data sets, extracting insights, and providing actionable recommendations. Strong communicator with cross-functional and international experience.
 
-    \section*{Education}
-    
-    \begin{tablist}
-      \item[Ph.D.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2020-2024
-      \item[M.S.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2018-2020
-      \item[B.S.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2015-2017
-      \item[B.E.] \tab{}Software Engineering, Yangtze University, Jingzhou, China, 2012-2015
-    \end{tablist}
+% ---------- Education ----------
+\section*{Education}
+\resumeSubheading{HKUST Business School}{Hong Kong}{MBA, Global Leadership Program}{Jun 2026}
+\resumeSubheading{University of Chicago}{USA}{Professional Education Program: AI \& Data Science for Leaders}{May 2024}
+\resumeSubheading{Huazhong Univ. of Science and Technology}{China}{B.Eng. in Automation (System Eng. Track)}{Jun 2014}
+\begin{itemize}[leftmargin=*]
+  \item Co-founder of C-Indigo team to develop Android games
+\end{itemize}
 
-    \section*{Appointments}
-    \begin{tablist}
-    
-      \item[2024--] \tab{}National Institutes of Health \\
-                    Postdoctoral Fellow, National Cancer Institute
-    
-    \end{tablist}
-    
-    \section*{Research Areas}
-    \begin{itemize}
-      \item Cancer Data Science and Computational Pathology: spatial modeling of WSI, AI for cancer research
-      \item Smart meter: building occupancy detection, socio-demographic info identification, energy theft detection, and load monitoring
-      \item Social computation: multi-modal language model method for rumor detection on social media
-      \item Computer Vision: plant leaf diseases detection and neural adversarial attack \& detection
-      \item Biomedical data analytics: sEMG-based hand gesture recognition and user authentication, EEG-based driving fatigue detection
-    \end{itemize}
-    
-    \section*{Publications}
-    \subsection*{Journal Articles}
-    \begin{tablist}
-        \item[2025] \tab{}\fullcite{luo2025designing}
-        \item[2024] \tab{}\fullcite{li2024automatic}
-        \item[2024] \tab{}\fullcite{nichols2024image}
-        \item[2024] \tab{}\fullcite{luo2024deep}
-        \item[2023] \tab{}\fullcite{qi2023deepsmi}
-        \item[2023] \tab{}\fullcite{li2023deeptpa}
-        \item[2022] \tab{}\fullcite{li2022new}
-        \item[2022] \tab{}\fullcite{qi2022novel} 
-        \item[2021] \tab{}\fullcite{luo2021deep}
-        \item[2021] \tab{}\fullcite{luo2021study}
-        \item[2018] \tab{}\fullcite{zamani2018patterns}
-        \item[2015] \tab{}\fullcite{li2015research}
-    \end{tablist}
+% ---------- Skills ----------
+\section*{Managerial \& Technical Skills}
+\begin{itemize}[leftmargin=*]
+  \item People and agile project management, critical and analytical thinking
+  \item Machine learning engineering architecture, data strategy and governance
+  \item Regulations: GDPR, PDPA Singapore, AI Act
+  \item Applications: Spring Boot, PCF, Jenkins, JMeter, OpenAPI, Postgres, MQ, HashiCorp Vault
+  \item Big Data: Spark, Spark ML, Pandas, Impala, Yarn, Hadoop, Nifi, Splunk, Pytest
+  \item Deep Learning: TensorFlow, Keras
+  \item Cloud: Cloudera, Databricks MLFlow, AWS S3, Terraform
+\end{itemize}
 
-    \subsection*{Conference Proceedings}
-    \begin{tablist}
-        \item[2022] \tab{}\fullcite{luo2022abode-net}
-        \item[2021] \tab{}\fullcite{li2021deep}
-    \end{tablist}
+% ---------- Experience ----------
+\section*{Experience}
 
-    % \section*{INVITED TALKS}
-    % \subsection*{Campus Talks}
+\resumeSubheading{Mastercard}{Singapore}{Engineering Manager, Machine Learning Eng.}{Sep 2023 -- Present}
+\resumeItemListStart
+  \resumeItem{Managed 5 direct reports and global dotted-line team members, building ML and monitoring pipelines.}
+  \resumeItem{Spearheaded AI governance and Responsible AI services ensuring GDPR, PDPA, and AI Act compliance.}
+  \resumeItem{Led design, training, and deployment of ML solutions across product lines, including bias testing and monitoring.}
+  \resumeItem{Explored and integrated GenAI and RAG frameworks for explainability.}
+  \resumeItem{Migrated prediction workflows to AWS and Databricks; directed 500+ cardholder models.}
+\resumeItemListEnd
 
-    \section*{Conference Activity}
-    \begin{tablist}
-        \item[2022] \tab{}The 7th International Conference on Smart Computing and Communication (SmartCom 2022), New York, USA
-        \item[2022] \tab{}NSF EPSCoR Workshop on Artificial Intelligence \& No-Boundary Thinking, Little Rock, Arkansa
-    \end{tablist}
+\resumeSubheading{Apple}{Singapore}{Data Solutions Lead}{Jul 2023 -- Sep 2023}
+\resumeItemListStart
+  \resumeItem{Implemented data integration and warehousing solutions for Global BI team.}
+  \resumeItem{Migrated SAP reports to Snowflake and Tableau across India, Singapore, and China teams.}
+\resumeItemListEnd
 
-    \section*{Awards}
-    \subsection*{Awards and Honors}
-    \begin{tablist}
-        \item[2022] \tab{}Best Student Paper Award, SmartCom2022
-        \item[2022] \tab{}First Place Graduate Poster Award, New Mexico Research Symposium (NMRS)
-        \item[2022] \tab{}First Place Poster Winner, NM SMART Grid Center All Hands Meeting
-        \item[2022] \tab{}Second Place Graduate Poster Award, NMT Student Research Symposium
-    \end{tablist}
+\resumeSubheading{OKX}{Singapore}{Data Architect}{Dec 2022 -- May 2023}
+\resumeItemListStart
+  \resumeItem{Supported C-suite with data architecture and digitization strategy.}
+  \resumeItem{Enhanced data lineage, quality standards, and SLA stability for commission rebate pipelines.}
+  \resumeItem{Built hybrid streaming-batch pipelines and real-time user segmentation for personalization.}
+\resumeItemListEnd
 
-    \section*{Teaching}
-    \begin{tablist}
-        \item[2022 Summer] \tab{}Introductory-level Python course, Upward Bound Math and Science
-        \item[2020-2022] \tab{}Compiler Writing Lab
-        \item[2018-2022] \tab{}Teaching Assistant: Computer Network, Operating System, 
-    \end{tablist}
+\resumeSubheading{Shopee}{Singapore}{Data Team Lead}{May 2019 -- Sep 2022}
+\resumeItemListStart
+  \resumeItem{Led advertisement data teams (up to 14 members) across Singapore and Beijing.}
+  \resumeItem{Built real-time ML data engines and near-real-time market DW with Apache Hudi.}
+  \resumeItem{Developed ads data warehouse, CRM dashboards, and e-commerce data mart.}
+  \resumeItem{Ensured GDPR-compliant data governance across infra and compliance teams.}
+\resumeItemListEnd
 
-    \section*{Service}
-    \subsection*{Academic Journal and Conference Peer Review}
-    \begin{itemize}
-        \item IEEE Wireless Communications and Networking Conference (WCNC)
-        \item Scientific Reports
-        \item Knowledge-Based Systems
-        \item PeerJ Computer Science
-        \item Journal of King Saud University - Computer and Information Sciences 
-        \item The 36th ACM/SIGAPP Symposium On Applied Computing
-    \end{itemize}
+\resumeSubheading{Alibaba}{Hangzhou, China}{Engineer II}{Apr 2017 -- Feb 2018}
+\resumeItemListStart
+  \resumeItem{Built seller onboarding, transfer, and qualification systems.}
+  \resumeItem{Unified DW across Alibaba, Alipay, and government qualification systems.}
+\resumeItemListEnd
 
-    \section*{Research Labs and Assistantship}
-    \begin{tablist}
-        \item[2020-Now] \tab{}Research assistant at Human-Centered Computing and Security Lab, NMT
-        \item[2019-2021] \tab{}Graduate Assistant for REU in Cybersecurity, NMT
-        \item[2018-2020] \tab{}Research assistant at Sensor Security, Neural Network Lab, NMT
-        \item[2017 Summer] \tab{}Research assistant on optimization of twice-differetiable non-convex function
-        \item[2016-2017] \tab{}Robotics Lab Research, NMT
-    \end{tablist}
+\resumeSubheading{Mogujie}{Hangzhou, China}{Senior Development Engineer}{May 2015 -- Mar 2017}
+\resumeItemListStart
+  \resumeItem{Developed trading real-time data engines and MQ-based order systems.}
+  \resumeItem{Ensured data consistency in distributed trading systems.}
+\resumeItemListEnd
 
-    \section*{Certificates}
-    \begin{tablist}
-        % \item[2022] \tab{}Graduate Certificate in Cybersecurity
-        \item[2022] \tab{}Intel AI Analytics Toolkit Workshop
-        \item[2014] \tab{}IBM Academic Initiative Senior Software Development Engineer
-    \end{tablist}
+\resumeSubheading{Zhenai.com}{Shenzhen, China}{Assistant Java Engineer}{Jun 2014 -- Apr 2015}
+\resumeItemListStart
+  \resumeItem{Maintained backend projects using Spring MVC, Hibernate, MySQL, JSP.}
+\resumeItemListEnd
 
-    \section*{Professional Employment}
-    \begin{tablist}
-        \item[2018] \tab{}C++ Development, Zhejiang Guozi Robotics, Hangzhou, China
-    \end{tablist}
-
-    \section*{Skills}
-    \begin{tablist}
-        \item[Programming] \tab{}Python, C/C++, C\#, Java, LaTex, Matlab, R
-        \item[Web] \tab{}\tab{}Flask, Bootstrap
-        \item[Deep Learning] \tab{}PyTorch, TensorFlow
-        \item[Visualization] \tab{}Matplotlib, ggplot, Gephi, OpenCV
-    \end{tablist}
+% ---------- Additional ----------
+\section*{Additional Information}
+\begin{itemize}[leftmargin=*]
+  \item Nationalities: Chinese, Singapore PR
+  \item Languages: English, Mandarin Chinese
+  \item Community: Mentor, Mentoring SG Program; Industry Mentor, NTU
+  \item Certifications: PDPA Practitioner (Singapore), Databricks Fundamentals, Databricks Lakehouse Fundamentals, Data Engineering with Databricks, Applied AI with Deep Learning
+\end{itemize}
 
 \end{document}
