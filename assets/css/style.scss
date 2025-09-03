@@ -3,10 +3,26 @@
 
 @import "{{ site.theme }}";
 
-.sidebar, .site-title, .site-footer, .page-footer { display: none !important; }
-.wrapper, .container, .inner, .post, .post-content, .main-content {
+/* 隐藏左侧栏/页脚，让内容整页展示 */
+.sidebar,
+.site-footer,
+.page-footer,
+footer { display: none !important; }
+
+/* 拉宽主内容区域，居中并增加内边距 */
+.wrapper,
+.container,
+.inner,
+.main-content,
+.post,
+.post-content {
   max-width: 980px !important;
   width: 100% !important;
   margin: 32px auto !important;
   padding: 0 20px !important;
 }
+
+/* 细节：标题/分割线/列表更像简历 */
+h1 { margin: 0 0 8px; }
+h2 { margin-top: 32px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px; }
+ul { padding-left: 1.2rem; }
