@@ -30,7 +30,6 @@ jobs:
         run: |
           mkdir -p out
           latexmk -xelatex -output-directory=out main_cv.tex
-          # 生成 .nojekyll，避免 Jekyll 干扰静态资源
           touch out/.nojekyll
 
       - name: Copy site files
