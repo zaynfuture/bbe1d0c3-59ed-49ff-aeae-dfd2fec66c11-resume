@@ -28,7 +28,7 @@ Professional Education Program — *May 2024*
 **Huazhong University of Science and Technology (HUST)** · *Wuhan, China*  
 Bachelor of Engineering in Automation — *Jun 2014*  
 - Specialization in System Engineering (Computer Engineering)  
-- Co-founder of **C-Indigo** team to develop Android games  
+- Co-founder of CIndigo team to develop Android games  
 
 ---
 
@@ -114,10 +114,11 @@ Bachelor of Engineering in Automation — *Jun 2014*
 ---
 
 ## ADDITIONAL INFORMATION
-- Nationalities: Chinese; Singapore PR  
-- Languages: English, Mandarin Chinese  
-- Community: Mentor (Mentoring SG Program); Industry Mentor (NTU)  
-- Certifications: PDPA Practitioner (Singapore), Databricks Fundamentals, Databricks Lakehouse Fundamentals, Data Engineering with Databricks, Applied AI with Deep Learning  
+- Nationalities: Chinese, Singapore PR.
+- Languages: English, Chinese(Mandarin)
+- Community Contributions: Mentor of Mentoring SG Program, Industry Mentor of Nanyang Technological University(NTU)
+- Certifications: Practitioner Certificate in Personal Data Protection (Singapore), Databricks Fundamentals, Databricks Lakehouse Fundamentals, Certification of Completion of Data Engineering with Databricks, Applied AI with Deep Learning.
+ 
 
 ---
 
