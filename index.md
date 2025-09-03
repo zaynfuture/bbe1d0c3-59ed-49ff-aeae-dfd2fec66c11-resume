@@ -3,6 +3,11 @@
 3 Fraser St, Level 17, Duo Tower, Singapore  
 (+65) 8845-3896 | [zaynfuture0932@gmail.com](mailto:zaynfuture0932@gmail.com) | [LinkedIn](https://www.linkedin.com/in/zayn-zheng/)
 
+<div class="actions">
+  <a class="btn" href="resume.pdf" target="_blank" rel="noopener">⬇️ Download PDF</a>
+  <a class="btn" href="https://www.linkedin.com/in/zayn-zheng/" target="_blank" rel="noopener">LinkedIn</a>
+</div>
+
 ---
 
 ## PROFESSIONAL SUMMARY
