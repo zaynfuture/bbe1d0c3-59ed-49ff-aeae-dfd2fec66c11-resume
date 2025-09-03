@@ -1,0 +1,12 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.sidebar, .site-title, .site-footer, .page-footer { display: none !important; }
+.wrapper, .container, .inner, .post, .post-content, .main-content {
+  max-width: 980px !important;
+  width: 100% !important;
+  margin: 32px auto !important;
+  padding: 0 20px !important;
+}
