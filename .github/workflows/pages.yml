@@ -1,0 +1,58 @@
+name: Build & Publish GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install TeX Live (XeLaTeX)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-xetex texlive-latex-recommended texlive-fonts-recommended latexmk
+
+      - name: Build resume.pdf
+        run: |
+          mkdir -p out
+          latexmk -xelatex -output-directory=out main_cv.tex
+          # 生成 .nojekyll，避免 Jekyll 干扰静态资源
+          touch out/.nojekyll
+
+      - name: Copy site files
+        run: |
+          cp index.html out/index.html
+          if [ -d assets ]; then cp -R assets out/; fi
+
+      - name: Rename pdf to resume.pdf (optional)
+        run: |
+          if [ -f out/main_cv.pdf ]; then mv out/main_cv.pdf out/resume.pdf; fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
