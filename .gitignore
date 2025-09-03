@@ -1,12 +1,2 @@
-*.bbl
-*.aux
-*.blg
-*.fdb_latexmk
-*.fls
 *.log
-*.synctex.gz
-*.out
-*.bcf
-*.xml
-*.synctex*
 .idea/
