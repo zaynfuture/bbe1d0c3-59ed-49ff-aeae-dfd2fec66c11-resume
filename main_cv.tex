@@ -1,127 +1,201 @@
 \documentclass[a4paper,11pt]{article}
-\usepackage{latexsym}
-\usepackage[empty]{fullpage}
+
+% --- Page & Fonts (XeLaTeX) ---
+\usepackage[margin=1.8cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+
+% --- Formatting ---
+\usepackage{hyperref}
 \usepackage{titlesec}
 \usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{xcolor}
-\usepackage{fontawesome}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
 
-\hypersetup{
-  colorlinks=true,
-  urlcolor=blue
-}
-
-% ---------- Page style ----------
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black}
+\setlist[itemize]{leftmargin=1.2em,label=\textbullet,itemsep=4pt,topsep=2pt}
 \pagestyle{empty}
-\setlength{\tabcolsep}{0in}
-\setlength{\parskip}{4pt}
-\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
-% ---------- Section format ----------
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-
-% ---------- Custom commands ----------
-\newcommand{\resumeItem}[1]{\item #1}
-\newcommand{\resumeSubheading}[4]{
-  \vspace{1pt}\textbf{#1} \hfill #2 \\
-  \textit{#3} \hfill \textit{#4}\vspace{2pt}
+% --- Section style: UPPERCASE + rule ---
+\newcommand{\sectionhr}[1]{%
+  \vspace{6pt}\textbf{\MakeUppercase{#1}}\par
+  \vspace{2pt}\hrule\vspace{6pt}
 }
-\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*]}
-\newcommand{\resumeItemListEnd}{\end{itemize}}
 
-% ==================================================
+% --- Two–column row (left text / right city, date) ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}m{4.5cm}}
+\newcommand{\rightcol}[2]{\begin{tabular}{@{}r@{}} \textbf{#1}\\ #2 \end{tabular}}
+
+% --- Education entry ---
+\newcommand{\EduEntry}[5]{%
+  \begin{tabularx}{\linewidth}{@{}L R@{}}
+    \textbf{#1}\\ {\itshape #2} & \rightcol{#4}{#5}
+  \end{tabularx}\par
+  #3
+  \vspace{6pt}
+}
+
+% --- Experience entry ---
+\newcommand{\ExpHeader}[4]{%
+  \begin{tabularx}{\linewidth}{@{}L R@{}}
+    \textbf{#1} & \rightcol{#3}{#4} \\
+    \emph{#2} &
+  \end{tabularx}\vspace{2pt}
+}
+
 \begin{document}
 
+% ================== Header ==================
 \begin{center}
-    {\LARGE \textbf{Zayn Zheng Zhi}} \\[4pt]
-    3 Fraser St, Level 17, Duo Tower, Singapore \\
-    (+65) 8845-3896 \quad \faEnvelope\ \href{mailto:zaynfuture0932@gmail.com}{zaynfuture0932@gmail.com} \\
-    \faLinkedin\ \href{https://www.linkedin.com/in/zayn-zheng/}{linkedin.com/in/zayn-zheng}
+  {\LARGE \textbf{Zayn Zheng Zhi}}\par
+  3 Fraser St, Level 17, Duo Tower, Singapore \par
+  (+65) 8845-3896 \,|\, \href{mailto:zaynfuture0932@gmail.com}{zaynfuture0932@gmail.com} \,|\, \href{https://www.linkedin.com/in/zayn-zheng/}{https://www.linkedin.com/in/zayn-zheng/}
 \end{center}
 
-% ---------- Summary ----------
-\section*{Professional Summary}
-10 years of work experience in data, AI, and software engineering, with 5 years in managerial roles. Proven ability to lead teams of up to 15 across multiple countries. Skilled at understanding complex data sets, extracting insights, and providing actionable recommendations. Strong communicator with cross-functional and international experience.
+\hrule\vspace{8pt}
 
-% ---------- Education ----------
-\section*{Education}
-\resumeSubheading{HKUST Business School}{Hong Kong}{MBA, Global Leadership Program}{Jun 2026}
-\resumeSubheading{University of Chicago}{USA}{Professional Education Program: AI \& Data Science for Leaders}{May 2024}
-\resumeSubheading{Huazhong Univ. of Science and Technology}{China}{B.Eng. in Automation (System Eng. Track)}{Jun 2014}
-\begin{itemize}[leftmargin=*]
-  \item Co-founder of C-Indigo team to develop Android games
+% ================== Summary ==================
+\sectionhr{Professional Summary}
+\emph{10 years of work experience in data, AI and software engineering fields and 5 years experience dedicated to managerial roles.}
+
+\emph{Demonstrated ability to understand complex data sets, extract insights, and provide valuable recommendations.}
+
+\emph{Effective communicator with the ability to work collaboratively with internal stakeholders and external parties.}
+
+\emph{Led teams of up to 15 members across multiple countries in previous roles.}
+
+% ================== Education ==================
+\sectionhr{Education}
+
+\EduEntry
+  {Northwestern University}
+  {Master of Science in Data Science}
+  {\begin{itemize}\item Specialization in Artificial Intelligence\end{itemize}}
+  {Evanston, IL, United States}
+  {December 2028}
+
+\EduEntry
+  {The Hong Kong University of Science and Technology (HKUST)}
+  {Master of Business Administration (MBA)}
+  {\begin{itemize}\item Global Leadership Program\end{itemize}}
+  {Hong Kong}
+  {June 2026}
+
+\EduEntry
+  {The University of Chicago}
+  {Professional Education Program}
+  {\begin{itemize}\item Artificial Intelligence and Data Science for Leaders\end{itemize}}
+  {Chicago, IL, United States}
+  {May 2024}
+
+\EduEntry
+  {Huazhong University of Science and Technology (HUST)}
+  {Bachelor of Engineering in Automation}
+  {\begin{itemize}
+    \item Specialization in System Engineering (Computer Engineering)
+    \item Co-founder of C-Indigo team to develop Android games
+  \end{itemize}}
+  {Wuhan, Hubei, China}
+  {June 2014}
+
+% ================== Skills ==================
+\sectionhr{Managerial \& Technical Skills}
+\begin{itemize}
+  \item People and agile project management.
+  \item Critical and analytical thinking.
+  \item Machine learning engineering architecture.
+  \item Data strategy and management.
+  \item GDPR/PDPA Singapore, AI Act.
+  \item Vendor management and coordination; model quality and data quality strategy.
+  \item \textbf{Application:} Spring Boot, Cloud Foundry (PCF), Jenkins, Quality Gates, JMeter, OpenAPI, PostgresDB, MQ, HashiCorp Vault.
+  \item \textbf{Big data:} Spark, Spark ML, Pandas, Impala, Livy, Yarn, Hadoop, Nifi, Splunk, Pytest–PySpark.
+  \item \textbf{Deep learning:} TensorFlow, Keras.
+  \item \textbf{Cloud Service:} Cloudera (CML, Hue, Spark on K8s), Databricks MLflow, AWS S3, Terraform.
 \end{itemize}
 
-% ---------- Skills ----------
-\section*{Managerial \& Technical Skills}
-\begin{itemize}[leftmargin=*]
-  \item People and agile project management, critical and analytical thinking
-  \item Machine learning engineering architecture, data strategy and governance
-  \item Regulations: GDPR, PDPA Singapore, AI Act
-  \item Applications: Spring Boot, PCF, Jenkins, JMeter, OpenAPI, Postgres, MQ, HashiCorp Vault
-  \item Big Data: Spark, Spark ML, Pandas, Impala, Yarn, Hadoop, Nifi, Splunk, Pytest
-  \item Deep Learning: TensorFlow, Keras
-  \item Cloud: Cloudera, Databricks MLFlow, AWS S3, Terraform
+% ================== Experience ==================
+\sectionhr{Experience}
+
+\ExpHeader
+  {Mastercard}
+  {Engineering Manager, Data Engineering}
+  {Singapore}
+  {Sep 2023 -- Present}
+\begin{itemize}
+  \item Member of Software Engineering Guild and AI \& Data Science Guild. Managed core team of 5; led automated ML and model monitoring pipelines; handled OKRs, talent planning, performance reviews.
+  \item Directed AI Governance/Responsible AI services for NA \& EU. Built privacy-compliant pipelines with Legal/Compliance.
+  \item Supported GTM solutions (Dynamic Yield, Portfolio Optimizer, Consumer Credit Analytics, Supplier Enablement).
+  \item Migrated on-prem prediction workflows to AWS \& Databricks; improved scalability and performance.
+  \item Owned MLOps pipeline management for 500+ cardholder models; improved data/model quality and release reliability.
 \end{itemize}
 
-% ---------- Experience ----------
-\section*{Experience}
+\ExpHeader
+  {Apple}
+  {Data Solutions Lead}
+  {Singapore}
+  {Jul 2023 -- Sep 2023}
+\begin{itemize}
+  \item Implemented data integration and warehousing for Global BI; migrated SAP reports to Snowflake \& Tableau across India, Singapore, China.
+\end{itemize}
 
-\resumeSubheading{Mastercard}{Singapore}{Engineering Manager, Machine Learning Eng.}{Sep 2023 -- Present}
-\resumeItemListStart
-  \resumeItem{Managed 5 direct reports and global dotted-line team members, building ML and monitoring pipelines.}
-  \resumeItem{Spearheaded AI governance and Responsible AI services ensuring GDPR, PDPA, and AI Act compliance.}
-  \resumeItem{Led design, training, and deployment of ML solutions across product lines, including bias testing and monitoring.}
-  \resumeItem{Explored and integrated GenAI and RAG frameworks for explainability.}
-  \resumeItem{Migrated prediction workflows to AWS and Databricks; directed 500+ cardholder models.}
-\resumeItemListEnd
+\ExpHeader
+  {OKX}
+  {Data Architect}
+  {Singapore}
+  {Dec 2022 -- May 2023}
+\begin{itemize}
+  \item Supported C-suite data architecture \& digitization; improved lineage/quality/metadata; stabilized commission rebate pipelines.
+  \item Built hybrid streaming–batch pipelines; delivered real-time user segmentation for personalization.
+\end{itemize}
 
-\resumeSubheading{Apple}{Singapore}{Data Solutions Lead}{Jul 2023 -- Sep 2023}
-\resumeItemListStart
-  \resumeItem{Implemented data integration and warehousing solutions for Global BI team.}
-  \resumeItem{Migrated SAP reports to Snowflake and Tableau across India, Singapore, and China teams.}
-\resumeItemListEnd
+\ExpHeader
+  {Shopee}
+  {Data Team Lead}
+  {Singapore}
+  {May 2019 -- Sep 2022}
+\begin{itemize}
+  \item Led advertisement data teams (10 SG + 4 BJ); interviews, mentorship, OKR management.
+  \item Built real-time ML data engine; implemented Hudi lakehouse (Kappa DW) for near-real-time market DW across SEA \& LATAM.
+  \item Developed ads DW, CRM dashboards, merchant analytics; standardized GDPR-aligned data governance.
+\end{itemize}
 
-\resumeSubheading{OKX}{Singapore}{Data Architect}{Dec 2022 -- May 2023}
-\resumeItemListStart
-  \resumeItem{Supported C-suite with data architecture and digitization strategy.}
-  \resumeItem{Enhanced data lineage, quality standards, and SLA stability for commission rebate pipelines.}
-  \resumeItem{Built hybrid streaming-batch pipelines and real-time user segmentation for personalization.}
-\resumeItemListEnd
+\ExpHeader
+  {Alibaba}
+  {Engineer II}
+  {Hangzhou, China}
+  {Apr 2017 -- Feb 2018}
+\begin{itemize}
+  \item Built seller onboarding/transfer/qualification systems; unified qualification DW across Alibaba, Alipay \& government.
+\end{itemize}
 
-\resumeSubheading{Shopee}{Singapore}{Data Team Lead}{May 2019 -- Sep 2022}
-\resumeItemListStart
-  \resumeItem{Led advertisement data teams (up to 14 members) across Singapore and Beijing.}
-  \resumeItem{Built real-time ML data engines and near-real-time market DW with Apache Hudi.}
-  \resumeItem{Developed ads data warehouse, CRM dashboards, and e-commerce data mart.}
-  \resumeItem{Ensured GDPR-compliant data governance across infra and compliance teams.}
-\resumeItemListEnd
+\ExpHeader
+  {Mogujie}
+  {Senior Development Engineer}
+  {Hangzhou, China}
+  {May 2015 -- Mar 2017}
+\begin{itemize}
+  \item Built real-time trading data engines; MQ-based order system; ensured consistency in distributed trading systems.
+\end{itemize}
 
-\resumeSubheading{Alibaba}{Hangzhou, China}{Engineer II}{Apr 2017 -- Feb 2018}
-\resumeItemListStart
-  \resumeItem{Built seller onboarding, transfer, and qualification systems.}
-  \resumeItem{Unified DW across Alibaba, Alipay, and government qualification systems.}
-\resumeItemListEnd
+\ExpHeader
+  {Zhenai.com}
+  {Assistant Java Engineer}
+  {Shenzhen, China}
+  {Jun 2014 -- Apr 2015}
+\begin{itemize}
+  \item Maintained backend projects (Spring MVC, Hibernate, MySQL, JSP).
+\end{itemize}
 
-\resumeSubheading{Mogujie}{Hangzhou, China}{Senior Development Engineer}{May 2015 -- Mar 2017}
-\resumeItemListStart
-  \resumeItem{Developed trading real-time data engines and MQ-based order systems.}
-  \resumeItem{Ensured data consistency in distributed trading systems.}
-\resumeItemListEnd
-
-\resumeSubheading{Zhenai.com}{Shenzhen, China}{Assistant Java Engineer}{Jun 2014 -- Apr 2015}
-\resumeItemListStart
-  \resumeItem{Maintained backend projects using Spring MVC, Hibernate, MySQL, JSP.}
-\resumeItemListEnd
-
-% ---------- Additional ----------
-\section*{Additional Information}
-\begin{itemize}[leftmargin=*]
-  \item Nationalities: Chinese, Singapore PR
-  \item Languages: English, Mandarin Chinese
-  \item Community: Mentor, Mentoring SG Program; Industry Mentor, NTU
-  \item Certifications: PDPA Practitioner (Singapore), Databricks Fundamentals, Databricks Lakehouse Fundamentals, Data Engineering with Databricks, Applied AI with Deep Learning
+% ================== Additional ==================
+\sectionhr{Additional Information}
+\begin{itemize}
+  \item Nationalities: Chinese; Singapore PR.
+  \item Languages: English, Mandarin Chinese.
+  \item Community: Mentor (Mentoring SG Program); Industry Mentor (NTU).
+  \item Certifications: PDPA Practitioner (Singapore); Databricks Fundamentals; Databricks Lakehouse Fundamentals; Data Engineering with Databricks; Applied AI with Deep Learning.
 \end{itemize}
 
 \end{document}
