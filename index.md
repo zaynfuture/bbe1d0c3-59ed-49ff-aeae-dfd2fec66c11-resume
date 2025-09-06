@@ -122,4 +122,4 @@ Bachelor of Engineering in Automation — *Jun 2014*
 
 ---
 
-📄 [⬇️ Download PDF Resume](https://docs.google.com/document/d/10tqSZ-Qzk_DdW32Nh5bTotYDuQAUOPglx6Wv7mfUlT8/edit?usp=sharing)
+📄 [⬇️ Download PDF Resume](https://docs.google.com/document/d/1HB1tR0NBr2YWRKOeyStHSQ0tMJLBkLeY47BD8qjOWas/edit?usp=drive_link)
