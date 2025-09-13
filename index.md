@@ -114,8 +114,7 @@ Bachelor of Engineering in Automation — *Jun 2014*
 ---
 
 ## ADDITIONAL INFORMATION
-- Nationalities: Chinese, Singapore PR.
-- Languages: English, Chinese(Mandarin)
+- Languages: English, Chinese
 - Community Contributions: Mentor of Mentoring SG Program, Industry Mentor of Nanyang Technological University(NTU)
 - Certifications: Practitioner Certificate in Personal Data Protection (Singapore), Databricks Fundamentals, Databricks Lakehouse Fundamentals, Certification of Completion of Data Engineering with Databricks, Applied AI with Deep Learning.
  
